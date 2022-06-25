@@ -14,7 +14,7 @@ workspace "FirstExample"
 
 
 -- PROJECT: DLL
-project "FirstExapmle_dll"
+project "FirstExample_dll"
 location "FirstExample_dll"
 kind	"SharedLib" 
 language "C"

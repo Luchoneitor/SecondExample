@@ -21,14 +21,17 @@ extern "C" {
 #endif
 
 #pragma pack(push, 4)
-struct SimulationSizes {
+
+typedef struct
+{
    int numInputs;      /* the number of inputs that the DLL needs           */
    int numOutputs;     /* the number of outputs that the DLL provides       */
    int numStates;      /* the number of discrete states that the DLL needs  */
    int numParameters;  /* the number of user parameters that the DLL needs  */
-};
+}SimulationSizes;
 
-struct SimulationState {
+typedef struct 
+{
    const double* const inputs;     /* array of input values (read-only)      */
    double* const outputs;          /* array of output values (to fill by DLL) */
    double* const states;           /* array of discrete states (read/write)  */
@@ -36,7 +39,7 @@ struct SimulationState {
    const double time;              /* current simulation time (read-only)    */
    const char* errorMessage;       /* error message to set by DLL            */
    void* userData;                 /* pointer to any DLL data (untouched by PLECS) */
-};
+}SimulationState;
 #pragma pack(pop)
 
 /* Required: DLL needs to set all fields in aSizes.                          */
