@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include"Sizes.h"
 //OFFSET CALCULATIONS FOR INPUTS
 
 #define NO_OF_INPUTS (NO_OF_TRIG + NO_OF_MEAS + NO_OF_COMMANDS)
