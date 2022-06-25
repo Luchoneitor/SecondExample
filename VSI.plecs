@@ -49,7 +49,7 @@ Plecs {
   Schematic {
     Location      [0, 23; 2048, 988]
     ZoomFactor    2.2459
-    SliderPosition [0, 150]
+    SliderPosition [0, 167]
     ShowBrowser   off
     BrowserWidth  100
     Component {
@@ -466,7 +466,7 @@ Plecs {
       Type          VoltageSource
       Name          "V"
       Show          on
-      Position      [720, 235]
+      Position      [815, 240]
       Direction     up
       Flipped       off
       Parameter {
@@ -484,7 +484,7 @@ Plecs {
       Type          Ground
       Name          "Ground3"
       Show          off
-      Position      [720, 315]
+      Position      [815, 320]
       Direction     up
       Flipped       off
     }
@@ -492,7 +492,7 @@ Plecs {
       Type          WireMux
       Name          "Mux6"
       Show          off
-      Position      [720, 280]
+      Position      [815, 285]
       Direction     up
       Flipped       off
       Parameter {
@@ -505,7 +505,7 @@ Plecs {
       Type          SineGenerator
       Name          "Sine Wave1"
       Show          on
-      Position      [780, 235]
+      Position      [875, 240]
       Direction     left
       Flipped       off
       Parameter {
@@ -746,6 +746,158 @@ Plecs {
         Show          off
       }
     }
+    Component {
+      Type          Inductor
+      Name          "L3"
+      Show          on
+      Position      [725, 195]
+      Direction     left
+      Flipped       off
+      Parameter {
+        Variable      "L"
+        Value         "0.0002"
+        Show          off
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "R6"
+      Show          on
+      Position      [790, 195]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "R"
+        Value         "0.2"
+        Show          off
+      }
+    }
+    Component {
+      Type          SineGenerator
+      Name          "Sine Wave2"
+      Show          on
+      Position      [640, 270]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "Amplitude"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Bias"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Frequency"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Phase"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Units"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          Reference
+      SrcComponent  "Components/Electrical/Converters/Diode\\nRectifier"
+      Name          "Diode\nRectifier"
+      Show          on
+      Position      [710, 345]
+      Direction     up
+      Flipped       off
+      Frame         [-25, -25; 25, 25]
+      LabelPosition [0, 27]
+      LabelAlign    up
+      Parameter {
+        Variable      "Vf"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ron"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "therm"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "Rth"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "T_init"
+        Value         "0"
+        Show          off
+      }
+      Terminal {
+        Type          Port
+        Position      [10, -30]
+        Direction     up
+      }
+      Terminal {
+        Type          Port
+        Position      [0, -30]
+        Direction     up
+      }
+      Terminal {
+        Type          Port
+        Position      [-10, -30]
+        Direction     up
+      }
+      Terminal {
+        Type          Port
+        Position      [30, 0]
+        Direction     right
+      }
+      Terminal {
+        Type          Port
+        Position      [-30, 0]
+        Direction     left
+      }
+    }
+    Component {
+      Type          WireMux
+      Name          "Mux7"
+      Show          off
+      Position      [710, 270]
+      Direction     up
+      Flipped       off
+      Parameter {
+        Variable      "Width"
+        Value         "3"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "R7"
+      Show          on
+      Position      [705, 435]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "R"
+        Value         "100"
+        Show          off
+      }
+    }
     Connection {
       Type          Signal
       SrcComponent  "Triangular Wave"
@@ -930,18 +1082,18 @@ Plecs {
       Type          Wire
       SrcComponent  "Mux6"
       SrcTerminal   3
-      Points        [720, 295]
+      Points        [815, 300]
       Branch {
         DstComponent  "Ground3"
         DstTerminal   1
       }
       Branch {
-        Points        [730, 295]
+        Points        [825, 300]
         DstComponent  "Mux6"
         DstTerminal   4
       }
       Branch {
-        Points        [710, 295]
+        Points        [805, 300]
         DstComponent  "Mux6"
         DstTerminal   2
       }
@@ -1027,18 +1179,77 @@ Plecs {
     }
     Connection {
       Type          Wire
-      SrcComponent  "V"
-      SrcTerminal   1
-      Points        [720, 195]
-      DstComponent  "R5"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
       SrcComponent  "R5"
       SrcTerminal   2
       DstComponent  "L2"
       DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "R6"
+      SrcTerminal   2
+      DstComponent  "L3"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "R6"
+      SrcTerminal   1
+      Points        [815, 195]
+      DstComponent  "V"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Mux7"
+      SrcTerminal   2
+      DstComponent  "Diode\nRectifier"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Mux7"
+      SrcTerminal   3
+      DstComponent  "Diode\nRectifier"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Mux7"
+      SrcTerminal   4
+      DstComponent  "Diode\nRectifier"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "L3"
+      SrcTerminal   1
+      Points        [695, 195]
+      Branch {
+        DstComponent  "R5"
+        DstTerminal   1
+      }
+      Branch {
+        Points        [695, 220; 710, 220]
+        DstComponent  "Mux7"
+        DstTerminal   1
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "R7"
+      SrcTerminal   1
+      Points        [755, 435; 755, 345]
+      DstComponent  "Diode\nRectifier"
+      DstTerminal   4
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "R7"
+      SrcTerminal   2
+      Points        [655, 435; 655, 345]
+      DstComponent  "Diode\nRectifier"
+      DstTerminal   5
     }
   }
   ProbeBlock {
